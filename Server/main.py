@@ -12,11 +12,11 @@ from starlette.background import BackgroundTasks
 from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import HTMLResponse
 
-# from config import config
-# from recipe import recipe
-# from server import server
-# from result import result
-# from machinemodel import machinemodel
+from config import config
+from recipe import recipe
+from server import server
+from result import result
+from machinemodel import machinemodel
 from logfile import logfile
 
 
@@ -36,36 +36,36 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# app.include_router(result.result,
-#                     tags=["Result"],
-#                     responses={200: {"message": "OK"}}
-#                     )
+app.include_router(result.result,
+                    tags=["Result"],
+                    responses={200: {"message": "OK"}}
+                    )
 
-# app.include_router(config.config,
-#                    tags=["Config"],
-#                    responses={200: {"message": "OK"}}
-#                    )
+app.include_router(config.config,
+                   tags=["Config"],
+                   responses={200: {"message": "OK"}}
+                   )
 
-# #app.include_router(lastrecipe.lastrecipe,
-# #                   prefix="/lastrecipe",
-# #                   tags=["Last_recipe"],
-# #                   responses={200: {"message": "OK"}}
-# #                   )
+#app.include_router(lastrecipe.lastrecipe,
+#                   prefix="/lastrecipe",
+#                   tags=["Last_recipe"],
+#                   responses={200: {"message": "OK"}}
+#                   )
 
-# app.include_router(recipe.recipe,
-#                    tags=["Recipe"],
-#                    responses={200: {"message": "OK"}}
-#                    )
+app.include_router(recipe.recipe,
+                   tags=["Recipe"],
+                   responses={200: {"message": "OK"}}
+                   )
 
-# #app.include_router(server.server,
-# #                   #prefix="/server",
-# #                   tags=["Server"],
-# #                   responses={200: {"message": "OK"}}
-# #                   )
+#app.include_router(server.server,
+#                   #prefix="/server",
+#                   tags=["Server"],
+#                   responses={200: {"message": "OK"}}
+#                   )
 
-# app.include_router(machinemodel.Machinemodel,
-#                     tags=["MacineModel"],
-#                     responses={200: {"message": "OK"}}
+app.include_router(machinemodel.Machinemodel,
+                    tags=["MacineModel"],
+                    responses={200: {"message": "OK"}}
                     # )
 
 app.include_router(logfile.log_info,
