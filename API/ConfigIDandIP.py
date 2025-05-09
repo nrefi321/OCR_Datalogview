@@ -25,8 +25,6 @@ meta = MetaData()
 
 DeviceIDandIP = '/home/vpd/MoldDataLogviewJetson/VPDDatalog/VPDConfig/config/deviceIDandIP.json'
 server = '/home/vpd/MoldDataLogviewJetson/VPDDatalog/VPDConfig/config/server.json'
-# DeviceIDandIP = 'C:\\Users\\41411046\Desktop\\VPD-installationGuide\\MoldDataLogviewJetson\\VPDDatalog\\VPDConfig\\config\\deviceIDandIP.json'
-# server = 'C:\\Users\\41411046\\Desktop\\VPD-installationGuide\\MoldDataLogviewJetson\\VPDDatalog\\VPDConfig\\config\\server.json'
 
 
 def get_db():
@@ -49,7 +47,6 @@ class reboot(BaseModel):
 @app.get("/getDevice",response_model=DEVICEmodel)
 async def getDevice():
     param = []
-    # with open(r'C:\Users\41411046\Desktop\VPD-installationGuide\MoldDataLogviewJetson\VPDDatalog\VPDConfig\config\deviceIDandIP.json') as file:
     with open(DeviceIDandIP, 'r+') as f:
         param = json.load(f)
     return param
@@ -59,7 +56,6 @@ async def getDevice():
 async def Update_Device_Name(Device_name: str,Device_IP:str,Machine_No: str,MachineModel:str,Operation:str,response: Response,
                              vpdrequest: VPDconf,vpdrequest_recipe: VPDlastrecc,db: session = Depends(get_db)):
     data = []
-    # filename = 'C:\\Users\\41411046\Desktop\\VPD-installationGuide\\MoldDataLogviewJetson\\VPDDatalog\\VPDConfig\\config\\deviceIDandIP.json'
     with open(DeviceIDandIP, 'r+') as f:
         data = json.load(f)
         data['DEVICE_ID'] = jsonable_encoder(Device_name)  # <--- add `id` value.
@@ -138,7 +134,6 @@ async def Update_Device_Name(Device_name: str,Device_IP:str,Machine_No: str,Mach
 @app.get("/Server",response_model=SERVERmodel)
 async def getServer():
     param = []
-    # with open(r'C:\Users\41411046\Desktop\VPD-installationGuide\MoldDataLogviewJetson\VPDDatalog\VPDConfig\config\deviceIDandIP.json') as file:
     with open(server, 'r+') as f:
         param = json.load(f)
     return param
@@ -146,7 +141,6 @@ async def getServer():
 @app.put("/Updateserver",response_model=SERVERmodel)
 async def Update_Server(SERVER: str,MQTTBroker: str):
     data = []
-    # filename = 'C:\\Users\\41411046\Desktop\\VPD-installationGuide\\MoldDataLogviewJetson\\VPDDatalog\\VPDConfig\\config\\deviceIDandIP.json'
     with open(server, 'r+') as f:
         data = json.load(f)
         data['Server'] = jsonable_encoder(SERVER)  # <--- add `id` value.
@@ -165,8 +159,6 @@ async def Reboot_now():
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8080)
-
-# //172.16.42.104
 
 
 
