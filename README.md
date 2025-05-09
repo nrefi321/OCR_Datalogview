@@ -119,20 +119,34 @@ To ensure your scripts run automatically at boot and on a schedule, set up a **c
 sudo crontab -e -u yourusername
 ```
 2. Delete all existing content and replace it with the following:
+###-Device-
 ```
-## m h  dom mon dow   command
+# m h  dom mon dow   command
 @reboot sleep 60 && /usr/bin/python3 /home/vpd/MoldDataLogviewJetson/VPDDatalog/oled_module.py >> /home/vpd/Desktop/log_oled.log 2>&1
 @reboot sleep 60 && OPENBLAS_CORETYPE=ARMV8 /usr/bin/python3 /home/vpd/MoldDataLogviewJetson/VPDDatalog/main.py >> /home/vpd/Desktop/log_main.log 2>&1
-35 1 * * * /usr/bin/python3 /home/vpd/MoldDataLogviewJetson/VPDDatalog/autoupload.py
+15 0 * * * /usr/bin/python3 /home/vpd/MoldDataLogviewJetson/VPDDatalog/autoupload.py
 #@reboot sleep 10 && xrandr --fb 1600x900
 @reboot sleep 20 && /usr/bin/python3 /home/vpd/MoldDataLogviewJetson/getDatetime/updatetime.py
+@reboot sleep 60 && OPENBLAS_CORETYPE=ARMV8 /usr/bin/python3 /home/vpd/MoldDataLogviewJetson/VPDDatalog/main.py >> /home/vpd/Desktop/log_main.log 2>&1
+```
+###-Server-
+```
+# m h  dom mon dow   command
+#@reboot sleep 60 && /usr/bin/python3 /etc/cmd.py
+#@reboot mkdir Desktop/12345Test
+#@reboot echo hello > Desktop/hello
+@reboot sleep 30 && /usr/bin/bash /etc/init.d/mqbroker.sh
+#@reboot sleep 60 && echo hello > Desktop/hello
+@reboot sleep 40 && /usr/bin/python3 configdatabase/main.py >> /home/vpd01/Desktop/log_main.log 2>&1
+@reboot sleep 20 && /usr/bin/python3 configdatabase/updatetimepi.py
+1 0 * * * /usr/bin/python3 configdatabase/pubdata.py
 ```
 ### 📘 Explanation
-
 - `@reboot`: Run the script once after every system reboot.
 - `sleep X`: Delays execution by X seconds to allow other services to start first.
 - `>> file.log 2>&1`: Appends both output and errors to a log file.
 - `35 1 * * *`: Runs `autoupload.py` every day at 01:35 AM.
+- `15 0 * * *`: Runs daily at 00:15 (12:15 AM).
 - `OPENBLAS_CORETYPE=ARMV8`: Ensures better performance for OpenCV/Tensor libraries on ARM architecture.
 
 > ✅ This setup ensures your OCR and display modules start automatically, and data uploads happen daily without manual intervention.
