@@ -7,13 +7,10 @@ from vpdconfig import VPDServer,VPDConfig
 import shutil
 
 logging.basicConfig(filename=r'/home/vpd/Desktop/log_backupload.log',level=logging.INFO, format='%(asctime)s : %(levelname)s : %(message)s')
-# logging.basicConfig(filename=r'C:/Users/User/Desktop/vpd03-TNF-datalog/log_backupload.log',level=logging.INFO, format='%(asctime)s : %(levelname)s : %(message)s')
 
 apppath = "/home/vpd/MoldDataLogviewJetson/VPDDatalog"#os.path.dirname(__file__)
-# apppath = r"C:/Users/User/Desktop/vpd03-TNF-datalog"#os.path.dirname(__file__)
 Mainlog = apppath +"/MachineLog/"
-# serverlog = 'http://localhost:8888/log_file'
-serverlog = 'http://10.151.27.1:8080/log_file'
+serverlog = 'http://localhost:8888/log_file'
 
 def createdir(dir):
     if not os.path.exists(dir):
