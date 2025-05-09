@@ -14,7 +14,6 @@ server = '/home/vpd/MoldDataLogviewJetson/VPDDatalog/VPDConfig/config/server.jso
 @app.get("/")
 async def configdata():
     param = []
-    # with open(r'C:\Users\41411046\Desktop\VPD-installationGuide\MoldDataLogviewJetson\VPDDatalog\VPDConfig\config\deviceIDandIP.json') as file:
     with open(DeviceIDandIP, 'r+') as f:
         param = json.load(f)
     return param
@@ -33,7 +32,6 @@ class reboot(BaseModel):
 @app.put("/UpdateDeviceID",response_model=DEVICEmodel)
 async def update_DeviceID(DEVICE_ID: str):
     data = []
-    # filename = 'C:\\Users\\41411046\Desktop\\VPD-installationGuide\\MoldDataLogviewJetson\\VPDDatalog\\VPDConfig\\config\\deviceIDandIP.json'
     with open(DeviceIDandIP, 'r+') as f:
         data = json.load(f)
         data['DEVICE_ID'] = jsonable_encoder(DEVICE_ID)  # <--- add `id` value.
@@ -45,7 +43,6 @@ async def update_DeviceID(DEVICE_ID: str):
 @app.get("/server")
 async def serverdata():
     param = []
-    # with open(r'C:\Users\41411046\Desktop\VPD-installationGuide\MoldDataLogviewJetson\VPDDatalog\VPDConfig\config\deviceIDandIP.json') as file:
     with open(server, 'r+') as f:
         param = json.load(f)
     return param
@@ -53,7 +50,6 @@ async def serverdata():
 @app.put("/Updateserver",response_model=SERVERmodel)
 async def update_server(SERVER: str,MQTTBroker: str):
     data = []
-    # filename = 'C:\\Users\\41411046\Desktop\\VPD-installationGuide\\MoldDataLogviewJetson\\VPDDatalog\\VPDConfig\\config\\deviceIDandIP.json'
     with open(server, 'r+') as f:
         data = json.load(f)
         data['Server'] = jsonable_encoder(SERVER)  # <--- add `id` value.
@@ -72,8 +68,6 @@ async def Rebootnow():
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8080)
-
-# //172.16.42.104
 
 
 
