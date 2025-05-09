@@ -152,3 +152,23 @@ sudo crontab -e -u yourusername
 
 > ✅ This setup ensures your OCR and display modules start automatically, and data uploads happen daily without manual intervention.
 
+---
+
+### 🖥️ How to Disable or Enable GUI on Boot (Ubuntu 20.04)
+
+#### 🚫 Disable GUI on Boot
+To boot into command-line mode (multi-user target), run:
+
+```
+sudo systemctl set-default multi-user
+gnome-session-quit
+```
+> This will stop launching the graphical desktop environment after reboot.
+
+#### ✅ Enable GUI on Boot
+To restore the graphical interface on startup:
+```
+sudo systemctl set-default graphical
+sudo systemctl start gdm3
+```
+> `gdm3` is the GNOME Display Manager. If you're using another display manager (e.g., `lightdm`), replace `gdm3` accordingly.
