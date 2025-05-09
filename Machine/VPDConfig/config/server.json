@@ -1,0 +1,7 @@
+{
+  "Server": "x.x.x.x", 
+  "MQTTBroker": "x.x.x.x",
+  "CIM_API":"http://XXX_API/UploadFile",
+  "CIM_API_TOKEN":"TOKEN-TO-UPLOAD",
+  "CIM_HOST":"API_XX"
+}
