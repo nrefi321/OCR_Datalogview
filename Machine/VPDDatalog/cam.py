@@ -6,8 +6,6 @@ cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
 while(True):
     ret, frame = cap.read()
     #gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-
-    #cv2.imshow('frame_gray',gray)
     cv2.imshow('frame_bgr',frame)
     #print(frame.shape)
     #cv2.imwrite('/home/vpd/Desktop/1.jpg', frame)
