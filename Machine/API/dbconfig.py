@@ -3,8 +3,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from pydantic.datetime_parse import datetime
 
-# host="127.0.0.1"
-host="10.151.17.2"
+host="127.0.0.1"
 user="vpd"
 password="vpd"
 
