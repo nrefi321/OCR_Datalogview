@@ -184,10 +184,10 @@ class VPDServer():
     config_dir = ''
     def __init__(self):
         global configMainPath
-        self.MQTTBroker = '172.16.42.104'
-        self.Server = '172.16.42.104'
-        self.CIM_API = 'http://th1srcim1:83/WebApi_CIM/api/v1/AutologViewController/Uploadfile'
-        self.CIM_API_TOKEN = 'F34677FE-0FBA-447D-AECD-18D43BA17880'
+        self.MQTTBroker = '172.x.x.x'
+        self.Server = '172.x.x.x'
+        self.CIM_API = 'http://xxxAPI/Uploadfile'
+        self.CIM_API_TOKEN = 'TOKEN-TO-UPLOAD'
         self.CIM_HOST = "API_FIRE"
         apppath = configMainPath#os.path.dirname(__file__)
         #if(apppath == ''):
@@ -204,10 +204,10 @@ class VPDServer():
         config_dir = VPDServer.config_dir
         self.createdir()
         param = {
-                    "Server": "172.16.42.104",
-                    "MQTTBroker": "172.16.42.104",
-                    "CIM_API":"http://th1srcim1:83/WebApi_CIM/api/v1/AutologViewController/UploadFile",
-                    "CIM_API_TOKEN":"F34677FE-0FBA-447D-AECD-18D43BA17880",
+                    "Server": "172.x.x.x",
+                    "MQTTBroker": "172.x.x.x",
+                    "CIM_API":"http://xxxAPI/Uploadfile",
+                    "CIM_API_TOKEN":"TOKEN-TO-UPLOAD",
                     "CIM_HOST":"API_FIRE"
                 }
         if not os.path.exists(config_dir +'server.json'):
@@ -233,10 +233,10 @@ class VPDServer():
             return
         self.createdir()
         param = {
-                    "Server": "172.16.42.104",
-                    "MQTTBroker": "172.16.42.104",
-                    "CIM_API":"http://th1srcim1:83/WebApi_CIM/api/v1/AutologViewController/UploadFile",
-                    "CIM_API_TOKEN":"F34677FE-0FBA-447D-AECD-18D43BA17880",
+                    "Server": "172.x.x.x",
+                    "MQTTBroker": "172.x.x.x",
+                    "CIM_API":"http://xxxAPI/Uploadfile",
+                    "CIM_API_TOKEN":"TOKEN-TO-UPLOAD",
                     "CIM_HOST":"API_FIRE"
                 }
         json_data = json.dumps(param , indent=2)
@@ -307,13 +307,3 @@ class RecordAlarm(Thread):
 
     
 
-
-#data = VPDLastMachineRecipe()
-#data.save('172.16.42.104','vpd01','OCR')
-
-#data = VPDConfig()
-#data.load('172.16.42.104')
-#print(data.TOPIC_REBOOT)
-
-#data = VPDServer()
-#print(data.Delay)
