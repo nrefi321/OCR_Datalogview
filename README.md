@@ -108,3 +108,32 @@ gsettings set org.gnome.Vino vnc-password $(echo -n 'vpd'|base64)
 
 sudo reboot
 ```
+---
+
+### ⏰ Setup Crontab for Auto-Start and Scheduling
+
+To ensure your scripts run automatically at boot and on a schedule, set up a **crontab** as follows:
+
+1. Open the crontab editor (replace `yourusername` with your actual username):
+```
+sudo crontab -e -u yourusername
+```
+2. Delete all existing content and replace it with the following:
+```
+## m h  dom mon dow   command
+@reboot sleep 60 && /usr/bin/python3 /home/vpd/MoldDataLogviewJetson/VPDDatalog/oled_module.py >> /home/vpd/Desktop/log_oled.log 2>&1
+@reboot sleep 60 && OPENBLAS_CORETYPE=ARMV8 /usr/bin/python3 /home/vpd/MoldDataLogviewJetson/VPDDatalog/main.py >> /home/vpd/Desktop/log_main.log 2>&1
+35 1 * * * /usr/bin/python3 /home/vpd/MoldDataLogviewJetson/VPDDatalog/autoupload.py
+#@reboot sleep 10 && xrandr --fb 1600x900
+@reboot sleep 20 && /usr/bin/python3 /home/vpd/MoldDataLogviewJetson/getDatetime/updatetime.py
+```
+### 📘 Explanation
+
+- `@reboot`: Run the script once after every system reboot.
+- `sleep X`: Delays execution by X seconds to allow other services to start first.
+- `>> file.log 2>&1`: Appends both output and errors to a log file.
+- `35 1 * * *`: Runs `autoupload.py` every day at 01:35 AM.
+- `OPENBLAS_CORETYPE=ARMV8`: Ensures better performance for OpenCV/Tensor libraries on ARM architecture.
+
+> ✅ This setup ensures your OCR and display modules start automatically, and data uploads happen daily without manual intervention.
+
