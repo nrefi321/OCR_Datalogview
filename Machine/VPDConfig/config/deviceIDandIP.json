@@ -1,4 +1,4 @@
 {
     "DEVICE_ID": "vpd04",
-    "DEVICE_IP": "172.0.0.1"
+    "DEVICE_IP": "127.0.0.1"
 }
