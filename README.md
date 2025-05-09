@@ -119,7 +119,8 @@ To ensure your scripts run automatically at boot and on a schedule, set up a **c
 sudo crontab -e -u yourusername
 ```
 2. Delete all existing content and replace it with the following:
-###-Device-
+   
+**Device**
 ```
 # m h  dom mon dow   command
 @reboot sleep 60 && /usr/bin/python3 /home/vpd/MoldDataLogviewJetson/VPDDatalog/oled_module.py >> /home/vpd/Desktop/log_oled.log 2>&1
@@ -129,7 +130,7 @@ sudo crontab -e -u yourusername
 @reboot sleep 20 && /usr/bin/python3 /home/vpd/MoldDataLogviewJetson/getDatetime/updatetime.py
 @reboot sleep 60 && OPENBLAS_CORETYPE=ARMV8 /usr/bin/python3 /home/vpd/MoldDataLogviewJetson/VPDDatalog/main.py >> /home/vpd/Desktop/log_main.log 2>&1
 ```
-###-Server-
+**Server**
 ```
 # m h  dom mon dow   command
 #@reboot sleep 60 && /usr/bin/python3 /etc/cmd.py
